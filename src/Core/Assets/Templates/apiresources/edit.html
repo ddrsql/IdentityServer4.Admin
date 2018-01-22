@@ -1,0 +1,218 @@
+﻿<div id="page-title">
+    <h1 class="page-header text-overflow">
+        <span ng-show="apiResource.data.name">Api Resource: {{apiResource.data.name}}</span>
+
+        <form class="form-inline pull-right" style="margin-right: 20px;" name="deleteApiResourceForm" ng-submit="deleteApiResource(apiResource)">
+            <tt-prompt id="m" action="Delete">Are you sure you want to delete Api Resource <strong>{{apiResource.data.name}}</strong>?</tt-prompt>
+            <button type="submit" class="btn btn-primary" tt-confirm-click="#m">Delete Api Resource</button>
+        </form>
+
+    </h1>
+</div>
+
+<div ng-show="apiResource">
+    <div class="panel-body">
+        <div class="tab-base">
+            <ul class="nav nav-tabs">
+                <li class="{{!tab ?'active':''}}" ng-show="apiResource.data.properties">
+                    <a ng-click="tab=0" href="#/apiresources/edit/{{apiResource.data.subject}}" role="tab" data-toggle="tab">Properties</a>
+                </li>
+
+                <li class="{{tab==1?'active':''}}" ng-show="apiResource.data.claims">
+                    <a ng-click="tab=1" href="#/apiresources/edit/{{apiResource.data.subject}}" role="tab" data-toggle="tab">Claims</a>
+                </li>
+
+                <li class="{{tab==2?'active':''}}" ng-show="apiResource.data.secrets">
+                    <a ng-click="tab=2" href="#/apiresources/edit/{{apiResource.data.subject}}" role="tab" data-toggle="tab">Secrets</a>
+                </li>
+
+                <li class="{{tab==3?'active':''}}" ng-show="apiResource.data.scopes">
+                    <a ng-click="tab=3" href="#/apiresources/edit/{{apiResource.data.subject}}" role="tab" data-toggle="tab">Scopes</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <id-adm-message message="feedback"></id-adm-message>
+                <div class="tab-pane {{!tab ?'active':''}}">
+                    <div class="line" ng-repeat="property in apiResource.data.properties">
+                        <div class="row line">
+                            <tt-property-editor property="property" set-property="setProperty"></tt-property-editor>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane {{tab==1?'active':''}}" ng-show="apiResource.data.claims">
+                    <div class="row section">
+                        <div class="col-sm-12">
+                            <form name="addClaimForm" class="form-inline" ng-submit="addApiResourceClaim(apiResource.data.claims, claim)">
+                                <div class="form-group">
+                                    <label for="type" class="column">Add Claim</label>
+                                    <input type="text" class="form-control client-edit-regular" id="type" placeholder="Type" required autofocus ng-model="claim.type">
+                                </div>
+                                <button type="submit" class="btn btn-primary" ng-disabled="addClaimForm.$invalid">Add</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div ng-hide="apiResource.data.claims.data.length" class="col-sm-8">
+                            <div class="alert alert-info">
+                                <p>No Claims For Api Resource</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped" ng-show="apiResource.data.claims.data.length">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Type</th>
+                                </tr>
+                            </thead>
+                            <tr ng-repeat="claim in apiResource.data.claims.data">
+                                <td>
+                                    <button class="btn btn-warning btn-xs" ng-click="removeApiResourceClaim(claim)">delete</button>
+                                </td>
+                                <td>{{claim.data.type}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane {{tab==2?'active':''}}" ng-show="apiResource.data.secrets">
+                    <div class="row section">
+                        <form name="addSecretForm" class="form-inline" ng-submit="addApiResourceSecret(apiResource.data.secrets, secret)">
+                            <div class="form-group">
+                                <label for="type" class="column">Choose hash &nbsp;</label>
+                                <span data-ng-repeat="choice in availableHashes.choices">
+                                    <label class="form-radio form-normal form-primary form-text form-checkbox" ng-class="availableHashes.chosenHash == choice.id ? 'active form-radio form-normal form-primary form-text' : 'form-radio form-normal form-primary form-text'">
+                                        <input type="radio" name="hashChoices" class="user-edit-regular" value="{{choice.id}}" ng-model="availableHashes.chosenHash" />
+                                        {{choice.text}}
+                                    </label>
+                                </span>
+                            </div>
+                            <br /><br />
+                            <div class="form-group">
+                                <label for="type" class="column">Add Secret</label>
+                                <input type="text" class="form-control" id="type" placeholder="Type" required autofocus ng-model="secret.type">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="value" placeholder="Value" required ng-model="secret.value">
+                            </div>
+                            <button type="submit" class="btn btn-primary" ng-disabled="addSecretForm.$invalid">Add</button>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <div ng-hide="apiResource.data.secrets.data.length" class="col-sm-8">
+                            <div class="alert alert-info">
+                                <p>No secrets found for this Api Resource</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="apiResource.data.secrets.data.length" class="detailList">
+                        <div class="row dlHeader">
+                            <div class="col-xs-2"></div>
+                            <div class="col-xs-2">Type</div>
+                            <div class="col-xs-2">Value</div>
+                            <div class="col-xs-3">Description</div>
+                            <div class="col-xs-3">Expiration</div>
+
+                        </div>
+                        <div class="row dlContent" ng-repeat="secret in apiResource.data.secrets.data">
+                            <div class="col-xs-2">
+                                <button class="btn btn-primary" ng-click="updateApiResourceSecret(secret)">Update</button>
+                                <button class="btn btn-warning" ng-click="removeApiResourceSecret(secret)">Delete</button>
+                            </div>
+                            <div class="col-xs-2" title="{{secret.data.type}}">{{secret.data.type}}</div>
+                            <div class="col-xs-2" title="{{secret.data.value}}">{{secret.data.value}}</div>
+                            <div class="col-xs-3">
+                                <input type="text" placeholder="Description" class="form-control" value="{{secret.data.description}}" ng-model="secret.data.description" />
+                            </div>
+                            <div class="col-xs-3 enableOverflow">
+                                <p class="input-group">
+                                    <input type="text" data-dateId="{{secret.data.id}}" class="form-control" ng-change="dateSelected(secret)" uib-datepicker-popup="{{calendar.dateFormat}}" ng-model="secret.data.expiration" is-open="calendar.isopen[$index]" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="calendar.open($event, $index)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane {{tab==3?'active':''}}">
+                    <div class="row section">
+                        <form name="addScopeForm" class="form-inline" ng-submit="addApiResourceScope(apiResource.data.scopes, scope)">
+                            <div class="form-group">
+                                <label for="type" class="column">Add Scope</label>
+                                <input type="text" class="form-control" id="type" placeholder="Type" required autofocus ng-model="scope.name">
+                            </div>
+                            <button type="submit" class="btn btn-primary" ng-disabled="addScopeForm.$invalid">Add</button>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <div ng-hide="apiResource.data.scopes.data.length" class="col-sm-8">
+                            <div class="alert alert-info">
+                                <p>No secrets found for this Api Resource</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="apiResource.data.scopes.data.length" class="detailList">
+                        <div class="row dlHeader">
+                            <div class="col-xs-2"></div>
+                            <div class="col-xs-1">Name</div>
+                            <div class="col-xs-1">Display Name</div>
+                            <div class="col-xs-2">Description</div>
+                            <div class="col-xs-1">Emphasize</div>
+                            <div class="col-xs-1">Required</div>
+                            <div class="col-xs-1">Show In Discovery Document</div>
+                            <div class="col-xs-2">Claims</div>
+                        </div>
+                        <div class="row dlContent" ng-repeat="scope in apiResource.data.scopes.data">
+                            <div class="row">
+                                <div class="col-xs-2">
+                                    <button class="btn btn-primary" ng-click="updateApiResourceScope(scope)">Update</button>
+                                    <button class="btn btn-warning" ng-click="removeApiResourceScope(scope)">Delete</button>
+                                </div>
+                                <div class="col-xs-1" title="{{scope.data.name}}">{{scope.data.name}}</div>
+                                <div class="col-xs-1">
+                                    <input type="text" placeholder="Display Name" class="form-control" value="{{scope.data.displayname}}" ng-model="scope.data.displayname" />
+                                </div>
+                                <div class="col-xs-2">
+                                    <input type="text" placeholder="Description" class="form-control" value="{{scope.data.description}}" ng-model="scope.data.description" />
+                                </div>
+                                <div class="col-xs-1">
+                                    <label class="form-checkbox form-normal form-primary form-text" ng-class="scope.data.emphasize ? 'active form-checkbox form-normal form-primary form-text' : 'form-checkbox form-normal form-primary form-text'">
+                                        <input type="checkbox" class="form-control" value="{{scope.data.emphasize}}" ng-model="scope.data.emphasize" />
+                                    </label>
+                                </div>
+                                <div class="col-xs-1">
+                                    <label class="form-checkbox form-normal form-primary form-text" ng-class="scope.data.required ? 'active form-checkbox form-normal form-primary form-text' : 'form-checkbox form-normal form-primary form-text'">
+                                        <input type="checkbox" class="form-control" value="{{scope.data.required}}" ng-model="scope.data.required" />
+                                    </label>
+                                </div>
+                                <div class="col-xs-1">
+                                    <label class="form-checkbox form-normal form-primary form-text" ng-class="scope.data.showInDiscoveryDocument ? 'active form-checkbox form-normal form-primary form-text' : 'form-checkbox form-normal form-primary form-text'">
+                                        <input type="checkbox" class="form-control" value="{{scope.data.showInDiscoveryDocument}}" ng-model="scope.data.showInDiscoveryDocument" />
+                                    </label>
+                                </div>
+                                <div class="col-xs-2">
+                                    <div class="row">
+                                        <form name="addScopeClaimForm" class="form-inline" ng-submit="addApiResourceScopeClaim(scope, claim)">                                            
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="type" placeholder="Type" required autofocus ng-model="claim.type">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary" ng-disabled="addScopeClaimForm.$invalid">Add Claim</button>
+                                        </form>
+                                    </div>
+                                    <div class="row" ng-repeat="claim in scope.claims">
+                                        <div class="col-xs-1">{{claim.data.type}}</div>
+                                        <div class="col-xs-1">
+                                            <button class="btn btn-warning" ng-click="removeApiResourceScopeClaim(scope, claim)">Delete Claim</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

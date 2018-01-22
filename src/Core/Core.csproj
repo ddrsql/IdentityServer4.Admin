@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{903AA92C-EE84-4F47-A27E-E75913950870}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IdentityAdmin</RootNamespace>
+    <AssemblyName>IdentityAdmin</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\build\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\build\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.0.0\lib\netstandard1.1\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.WebApi2.4.0.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.FileSystems">
+      <HintPath>..\packages\Microsoft.Owin.FileSystems.3.0.1\lib\net45\Microsoft.Owin.FileSystems.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Jwt">
+      <HintPath>..\packages\Microsoft.Owin.Security.Jwt.3.0.1\lib\net45\Microsoft.Owin.Security.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.StaticFiles">
+      <HintPath>..\packages\Microsoft.Owin.StaticFiles.3.0.1\lib\net45\Microsoft.Owin.StaticFiles.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.4.0.2.206221351\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime">
+      <HintPath>..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Thinktecture.IdentityModel.Core">
+      <HintPath>..\packages\Thinktecture.IdentityModel.Core.1.4.0\lib\net45\Thinktecture.IdentityModel.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Thinktecture.IdentityModel.Owin">
+      <HintPath>..\packages\Thinktecture.IdentityModel.Owin.2.1.1\lib\net45\Thinktecture.IdentityModel.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Thinktecture.IdentityModel.Owin.ScopeValidation">
+      <HintPath>..\packages\Thinktecture.IdentityModel.Owin.ScopeValidation.2.0.0\lib\net45\Thinktecture.IdentityModel.Owin.ScopeValidation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Api\Controllers\ApiResourceController.cs" />
+    <Compile Include="Api\Controllers\ClientController.cs" />
+    <Compile Include="Api\Controllers\IdentityResourceController.cs" />
+    <Compile Include="Api\Controllers\MetaController.cs" />
+    <Compile Include="Api\Controllers\AdminPageController.cs" />
+    <Compile Include="Api\Filters\NoCacheAttribute.cs" />
+    <Compile Include="Api\Filters\SecurityHeadersAttribute.cs" />
+    <Compile Include="Api\Models\ApiResource\ApiResourceDetailDataResource.cs" />
+    <Compile Include="Api\Models\ApiResource\ApiResourceDetailResource.cs" />
+    <Compile Include="Api\Models\IdentityResource\IdentityResourceDetailDataResource.cs" />
+    <Compile Include="Api\Models\IdentityResource\IdentityResourceDetailResource.cs" />
+    <Compile Include="Core\ApiResource\ApiResourceClaimValue.cs" />
+    <Compile Include="Core\ApiResource\ApiResourceDetail.cs" />
+    <Compile Include="Api\Models\ApiResource\ApiResourceQueryResultResource.cs" />
+    <Compile Include="Api\Models\ApiResource\ApiResourceQueryResultResourceData.cs" />
+    <Compile Include="Api\Models\ApiResource\ApiResourceResultResource.cs" />
+    <Compile Include="Api\Models\ApiResource\CreateApiResourceLink.cs" />
+    <Compile Include="Api\Models\Client\ClientDetailDataResource.cs" />
+    <Compile Include="Api\Models\Client\ClientDetailResource.cs" />
+    <Compile Include="Api\Models\Client\ClientQueryResultResource.cs" />
+    <Compile Include="Api\Models\Client\ClientQueryResultResourceData.cs" />
+    <Compile Include="Api\Models\Client\ClientResultResource.cs" />
+    <Compile Include="Api\Models\Client\CreateClientLink.cs" />
+    <Compile Include="Api\Models\ErrorModel.cs" />
+    <Compile Include="Api\Models\IdentityResource\CreateIdentityResourceLink.cs" />
+    <Compile Include="Core\ApiResource\ApiResourceScopeClaimValue.cs" />
+    <Compile Include="Core\ApiResource\ApiResourceScopeValue.cs" />
+    <Compile Include="Core\ApiResource\ApiResourceSecretValue.cs" />
+    <Compile Include="Core\IClientService.cs" />
+    <Compile Include="Core\IdentityResource\BaseIdentityResourceValue.cs" />
+    <Compile Include="Core\ApiResource\BaseApiResourceValue.cs" />
+    <Compile Include="Core\IdentityResource\IdentityResourceClaimValue.cs" />
+    <Compile Include="Core\IdentityResource\IdentityResourceDetail.cs" />
+    <Compile Include="Api\Models\IdentityResource\IdentityResourceQueryResultResource.cs" />
+    <Compile Include="Api\Models\IdentityResource\IdentityResourceQueryResultResourceData.cs" />
+    <Compile Include="Api\Models\IdentityResource\IdentityResourceResultResource.cs" />
+    <Compile Include="App_Packages\LibLog.1.4\LibLog.cs" />
+    <Compile Include="Assets\AssetManager.cs" />
+    <Compile Include="Assets\EmbeddedHtmlResult.cs" />
+    <Compile Include="Configuration\IdentityAdminAppBuilderExtensions.cs" />
+    <Compile Include="Configuration\AutofacConfig.cs" />
+    <Compile Include="Configuration\ExternalBearerTokenConfiguration.cs" />
+    <Compile Include="Configuration\Hosting\AsyncHelper.cs" />
+    <Compile Include="Configuration\Hosting\AutofacContainerMiddleware.cs" />
+    <Compile Include="Configuration\Hosting\AutofacAdminDependencyResolver.cs" />
+    <Compile Include="Configuration\Hosting\AutofacScope.cs" />
+    <Compile Include="Configuration\Hosting\KatanaDependencyResolver.cs" />
+    <Compile Include="Configuration\Hosting\LocalAuthenticationMiddleware\LocalhostAdminAuthenticationHandler.cs" />
+    <Compile Include="Configuration\Hosting\LocalAuthenticationMiddleware\LocalhostAdminAuthenticationMiddleware.cs" />
+    <Compile Include="Configuration\Hosting\LocalAuthenticationMiddleware\LocalhostAdminAuthenticationOptions.cs" />
+    <Compile Include="Configuration\Hosting\LogProviderExceptionLogger.cs" />
+    <Compile Include="Configuration\Hosting\OAuthAdminServerExtensions.cs" />
+    <Compile Include="Configuration\Hosting\AdminTraceLogger.cs" />
+    <Compile Include="Configuration\AdminHostSecurityConfiguration.cs" />
+    <Compile Include="Configuration\IdentityAdminOptions.cs" />
+    <Compile Include="Configuration\IdentityAdminServiceFactory.cs" />
+    <Compile Include="Configuration\IAdminDependencyResolver.cs" />
+    <Compile Include="Configuration\LocalhostSecurityConfiguration.cs" />
+    <Compile Include="Configuration\Registration.cs" />
+    <Compile Include="Configuration\AdminSecurityConfiguration.cs" />
+    <Compile Include="Configuration\WebApiConfig.cs" />
+    <Compile Include="Configuration\X509CertificateTicketDataProtector.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Core\ApiResource\ApiResourceMetaData.cs" />
+    <Compile Include="Core\ApiResource\ApiResourceSummary.cs" />
+    <Compile Include="Core\Client\BaseClientValue.cs" />
+    <Compile Include="Core\Client\ClientClaimValue.cs" />
+    <Compile Include="Core\Client\ClientCorsOriginValue.cs" />
+    <Compile Include="Core\Client\ClientCustomGrantTypeValue.cs" />
+    <Compile Include="Core\Client\ClientDetail.cs" />
+    <Compile Include="Core\Client\ClientIdPRestrictionValue.cs" />
+    <Compile Include="Core\Client\ClientMetaData.cs" />
+    <Compile Include="Core\Client\ClientPostLogoutRedirectUriValue.cs" />
+    <Compile Include="Core\Client\ClientRedirectUriValue.cs" />
+    <Compile Include="Core\Client\ClientScopeValue.cs" />
+    <Compile Include="Core\Client\ClientSecretValue.cs" />
+    <Compile Include="Core\Client\ClientSummary.cs" />
+    <Compile Include="Core\CreateResult.cs" />
+    <Compile Include="Core\IApiResourceService.cs" />
+    <Compile Include="Core\IdentityAdminResult.cs" />
+    <Compile Include="Core\IdentityManagerResult`1.cs" />
+    <Compile Include="Core\IdentityResource\IdentityResourceMetaData.cs" />
+    <Compile Include="Core\IdentityResource\IdentityResourceSummary.cs" />
+    <Compile Include="Core\IIdentityResourceService.cs" />
+    <Compile Include="Core\Metadata\ExecutablePropertyMetadata.cs" />
+    <Compile Include="Core\Metadata\ExpressionPropertyMetadata.cs" />
+    <Compile Include="Core\Metadata\IdentityAdminMetadata.cs" />
+    <Compile Include="Core\Metadata\PropertyDataType.cs" />
+    <Compile Include="Core\Metadata\PropertyMetadata.cs" />
+    <Compile Include="Core\Metadata\ReflectedPropertyMetadata.cs" />
+    <Compile Include="Core\OwinEnvironmentService.cs" />
+    <Compile Include="Core\PropertyValue.cs" />
+    <Compile Include="Core\QueryResult.cs" />
+    <Compile Include="Extensions\ClaimsExtensions.cs" />
+    <Compile Include="Extensions\IdentityAdminResultExtensions.cs" />
+    <Compile Include="Extensions\ModelStateDictionaryExtensions.cs" />
+    <Compile Include="Extensions\OwinExtensions.cs" />
+    <Compile Include="Extensions\PropertyInfoExtensions.cs" />
+    <Compile Include="Extensions\PropertyMetadataExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\UrlHelperExtensions.cs" />
+    <Compile Include="Logging\DiagnosticsTraceLogProvider.cs" />
+    <Compile Include="Logging\LibLogLoggerFactory.cs" />
+    <Compile Include="Logging\LibLogTraceListener.cs" />
+    <Compile Include="Logging\LogSerializer.cs" />
+    <Compile Include="Logging\RequestResponseLogger.cs" />
+    <Compile Include="Logging\TraceSourceLogProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Content\Bootstrap.css">
+      <DependentUpon>Bootstrap.less</DependentUpon>
+    </Content>
+    <Content Include="Assets\Content\Bootstrap.min.css">
+      <DependentUpon>Bootstrap.css</DependentUpon>
+    </Content>
+    <Content Include="Assets\Content\Bundle.css">
+      <DependentUpon>Bundle.css.bundle</DependentUpon>
+    </Content>
+    <Content Include="Assets\Scripts\App\ttidAdmApiResources.js" />
+    <Content Include="Assets\Scripts\App\ttidAdmIdentityResources.js" />
+    <EmbeddedResource Include="Assets\Templates\apiresources\new.html" />
+    <EmbeddedResource Include="Assets\Templates\identityresources\new.html" />
+    <EmbeddedResource Include="Assets\Templates\apiresources\edit.html" />
+    <EmbeddedResource Include="Assets\Templates\identityresources\edit.html" />
+    <EmbeddedResource Include="Assets\Templates\apiresources\list.html" />
+    <EmbeddedResource Include="Assets\Templates\identityresources\list.html" />
+    <EmbeddedResource Include="Assets\Content\style.min.css">
+      <DependentUpon>style.css</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="Assets\Scripts\Libs\moment.js" />
+    <Content Include="Assets\Scripts\Libs\sha.js" />
+    <Content Include="Assets\Scripts\Libs\sha1.js" />
+    <Content Include="Assets\Scripts\Libs\sha256.js" />
+    <Content Include="Assets\Scripts\Libs\sha512.js" />
+    <Content Include="Assets\Scripts\Libs\sha_dev.js" />
+    <Content Include="Assets\Scripts\Libs\ui-bootstrap-custom-tpls-0.14.3.min.js" />
+    <Content Include="Assets\Scripts\Libs\ui-bootstrap-tpls-0.14.3.min.js" />
+    <EmbeddedResource Include="Assets\Content\Bundle.min.css">
+      <DependentUpon>Bundle.css</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="Assets\Content\favicon.ico" />
+    <EmbeddedResource Include="Assets\Content\logo.jpg" />
+    <EmbeddedResource Include="Assets\Content\logo.png" />
+    <EmbeddedResource Include="Assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Assets\Content\style.css">
+      <DependentUpon>style.less</DependentUpon>
+    </Content>
+    <Content Include="Assets\Scripts\App\ttidAdm.js" />
+    <Content Include="Assets\Scripts\App\ttidAdmApp.js" />
+    <Content Include="Assets\Scripts\App\ttidAdmClients.js" />
+    <Content Include="Assets\Scripts\App\ttidAdmUI.js" />
+    <EmbeddedResource Include="Assets\Scripts\Bundle.js">
+      <DependentUpon>Bundle.js.bundle</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\Scripts\Bundle.min.js">
+      <DependentUpon>Bundle.js</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="Assets\Scripts\Libs\angular-route.min.js" />
+    <Content Include="Assets\Scripts\Libs\angular.min.js" />
+    <Content Include="Assets\Scripts\Libs\bootstrap.min.js" />
+    <Content Include="Assets\Scripts\Libs\jquery-2.1.0.min.js" />
+    <Content Include="Assets\Scripts\Libs\oidc-token-manager.min.js" />
+    <EmbeddedResource Include="Assets\Templates\clients\edit.html" />
+    <EmbeddedResource Include="Assets\Templates\clients\list.html" />
+    <EmbeddedResource Include="Assets\Templates\clients\new.html" />
+    <EmbeddedResource Include="Assets\Templates\editor\property.html" />
+    <EmbeddedResource Include="Assets\Templates\home.html" />
+    <EmbeddedResource Include="Assets\Templates\index.html" />
+    <EmbeddedResource Include="Assets\Templates\message.html" />
+    <EmbeddedResource Include="Assets\Templates\modal.html" />
+    <EmbeddedResource Include="Assets\Templates\navbar.html" />
+    <EmbeddedResource Include="Assets\Templates\pager\buttons.html" />
+    <EmbeddedResource Include="Assets\Templates\pager\summary.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Assets\Content\Bootstrap.css.map">
+      <DependentUpon>Bootstrap.css</DependentUpon>
+    </None>
+    <None Include="Assets\Content\Bootstrap.less" />
+    <None Include="Assets\Content\bootstrap\.csscomb.json" />
+    <None Include="Assets\Content\bootstrap\.csslintrc" />
+    <None Include="Assets\Content\bootstrap\alerts.less" />
+    <None Include="Assets\Content\bootstrap\badges.less" />
+    <None Include="Assets\Content\bootstrap\bootstrap.less" />
+    <None Include="Assets\Content\bootstrap\breadcrumbs.less" />
+    <None Include="Assets\Content\bootstrap\button-groups.less" />
+    <None Include="Assets\Content\bootstrap\buttons.less" />
+    <None Include="Assets\Content\bootstrap\carousel.less" />
+    <None Include="Assets\Content\bootstrap\close.less" />
+    <None Include="Assets\Content\bootstrap\code.less" />
+    <None Include="Assets\Content\bootstrap\component-animations.less" />
+    <None Include="Assets\Content\bootstrap\dropdowns.less" />
+    <None Include="Assets\Content\bootstrap\forms.less" />
+    <None Include="Assets\Content\bootstrap\glyphicons.less" />
+    <None Include="Assets\Content\bootstrap\grid.less" />
+    <None Include="Assets\Content\bootstrap\input-groups.less" />
+    <None Include="Assets\Content\bootstrap\jumbotron.less" />
+    <None Include="Assets\Content\bootstrap\labels.less" />
+    <None Include="Assets\Content\bootstrap\list-group.less" />
+    <None Include="Assets\Content\bootstrap\media.less" />
+    <None Include="Assets\Content\bootstrap\mixins.less" />
+    <None Include="Assets\Content\bootstrap\mixins\alerts.less" />
+    <None Include="Assets\Content\bootstrap\mixins\background-variant.less" />
+    <None Include="Assets\Content\bootstrap\mixins\border-radius.less" />
+    <None Include="Assets\Content\bootstrap\mixins\buttons.less" />
+    <None Include="Assets\Content\bootstrap\mixins\center-block.less" />
+    <None Include="Assets\Content\bootstrap\mixins\clearfix.less" />
+    <None Include="Assets\Content\bootstrap\mixins\forms.less" />
+    <None Include="Assets\Content\bootstrap\mixins\gradients.less" />
+    <None Include="Assets\Content\bootstrap\mixins\grid-framework.less" />
+    <None Include="Assets\Content\bootstrap\mixins\grid.less" />
+    <None Include="Assets\Content\bootstrap\mixins\hide-text.less" />
+    <None Include="Assets\Content\bootstrap\mixins\image.less" />
+    <None Include="Assets\Content\bootstrap\mixins\labels.less" />
+    <None Include="Assets\Content\bootstrap\mixins\list-group.less" />
+    <None Include="Assets\Content\bootstrap\mixins\nav-divider.less" />
+    <None Include="Assets\Content\bootstrap\mixins\nav-vertical-align.less" />
+    <None Include="Assets\Content\bootstrap\mixins\opacity.less" />
+    <None Include="Assets\Content\bootstrap\mixins\pagination.less" />
+    <None Include="Assets\Content\bootstrap\mixins\panels.less" />
+    <None Include="Assets\Content\bootstrap\mixins\progress-bar.less" />
+    <None Include="Assets\Content\bootstrap\mixins\reset-filter.less" />
+    <None Include="Assets\Content\bootstrap\mixins\reset-text.less" />
+    <None Include="Assets\Content\bootstrap\mixins\resize.less" />
+    <None Include="Assets\Content\bootstrap\mixins\responsive-visibility.less" />
+    <None Include="Assets\Content\bootstrap\mixins\size.less" />
+    <None Include="Assets\Content\bootstrap\mixins\tab-focus.less" />
+    <None Include="Assets\Content\bootstrap\mixins\table-row.less" />
+    <None Include="Assets\Content\bootstrap\mixins\text-emphasis.less" />
+    <None Include="Assets\Content\bootstrap\mixins\text-overflow.less" />
+    <None Include="Assets\Content\bootstrap\mixins\vendor-prefixes.less" />
+    <None Include="Assets\Content\bootstrap\modals.less" />
+    <None Include="Assets\Content\bootstrap\navbar.less" />
+    <None Include="Assets\Content\bootstrap\navs.less" />
+    <None Include="Assets\Content\bootstrap\normalize.less" />
+    <None Include="Assets\Content\bootstrap\pager.less" />
+    <None Include="Assets\Content\bootstrap\pagination.less" />
+    <None Include="Assets\Content\bootstrap\panels.less" />
+    <None Include="Assets\Content\bootstrap\popovers.less" />
+    <None Include="Assets\Content\bootstrap\print.less" />
+    <None Include="Assets\Content\bootstrap\progress-bars.less" />
+    <None Include="Assets\Content\bootstrap\responsive-embed.less" />
+    <None Include="Assets\Content\bootstrap\responsive-utilities.less" />
+    <None Include="Assets\Content\bootstrap\scaffolding.less" />
+    <None Include="Assets\Content\bootstrap\tables.less" />
+    <None Include="Assets\Content\bootstrap\theme.less" />
+    <None Include="Assets\Content\bootstrap\thumbnails.less" />
+    <None Include="Assets\Content\bootstrap\tooltip.less" />
+    <None Include="Assets\Content\bootstrap\type.less" />
+    <None Include="Assets\Content\bootstrap\utilities.less" />
+    <None Include="Assets\Content\bootstrap\variables.less" />
+    <None Include="Assets\Content\bootstrap\wells.less" />
+    <None Include="Assets\Content\Bundle.css.bundle" />
+    <EmbeddedResource Include="Assets\fonts\glyphicons-halflings-regular.eot" />
+    <EmbeddedResource Include="Assets\fonts\glyphicons-halflings-regular.ttf" />
+    <EmbeddedResource Include="Assets\fonts\glyphicons-halflings-regular.woff" />
+    <EmbeddedResource Include="Assets\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Assets\Content\style.css.map">
+      <DependentUpon>style.css</DependentUpon>
+    </None>
+    <None Include="Assets\Content\style.less" />
+    <None Include="Assets\Scripts\Bundle.js.bundle">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="bundleconfig.json" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Messages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\BuildBundlerMinifier.2.2.306\build\BuildBundlerMinifier.targets" Condition="Exists('..\packages\BuildBundlerMinifier.2.2.306\build\BuildBundlerMinifier.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\BuildBundlerMinifier.2.2.306\build\BuildBundlerMinifier.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BuildBundlerMinifier.2.2.306\build\BuildBundlerMinifier.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
